@@ -2,17 +2,13 @@
 
 import Carousel,{CarouselItem} from "@/Component/Carousel"
 import Container from "@/Component/Container"
-import Flex from "@/Component/Flex"
+import MicroCMSMyProfile from "@/Component/MicroCMSMyProfile"
 import SeoComponent from "@/Component/SEO/SEO"
 import { Metadata } from "next"
-import MicroCMSMyProfile from "@/Component/MicroCMSMyProfile"
 import dynamic from "next/dynamic"
-import { Suspense } from "react"
-import { getListData } from "@/libs/microcms"
-import { BlogPromiseProps } from "@/Component/Blog/SuspenseMicroCMSBlog"
 
 export async function generateMetadata(): Promise<Metadata>{
-    const title = "UtakataPortfolio"
+    const title = "ウタちゃんのお部屋"
     return SeoComponent({
       title: title,
       description: title,
@@ -32,12 +28,7 @@ const TwitterTimeLine = dynamic(() => import("Component/TwitterTL"),{
 export const revalidate = 0;
 
 export default async function Home(){
-  const data = await getListData()
-  if(!data/*  || data.length === 0 */){
-    return(
-      <p>BlogData NotFound</p>
-    )
-  }
+
   const Item: CarouselItem[] = [
     {
       src: "/header.png",
@@ -54,20 +45,6 @@ export default async function Home(){
         <div className="card shadow-xl">
           <div className="card-body card-bordered	bg-white">{await MicroCMSMyProfile()}</div>
         </div>
-      </Container>
-      <Container>
-      <Suspense fallback={(
-          <h1 className="text-xl">Loading-BlogData</h1>
-        )}>
-          {/* @ts-expect-error Server Component */}
-          <BlogPromiseProps PromiseBlogResponse={data} />
-        </Suspense>
-      </Container>
-      <Container>
-        <Flex>
-          <div className="basis-3/4" />
-          <TwitterTimeLine />
-        </Flex>
       </Container>
     </>
   )

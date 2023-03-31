@@ -3,6 +3,9 @@ import '../css/global.css';
 import Navbar from "@/Component/Navbar"
 import { SessionProvider } from "next-auth/react";
 import Footer,{FooterItemProps} from '@/Component/Footer';
+import localFont from "next/font/local"
+
+const Myfont = localFont({src: "../../font/ringo.otf"})
 
 export default function RootLayout({
   children
@@ -10,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const Hobby: FooterItemProps[] = [
-    {text:"Twitter",url:"https://twitter.com/UtakataKyosui"},
+    {text:"Twitter",url:"https://twitter.com/Utakata1336"},
     {text:"Mastdon",url:"https://mstdn.jp/@UtakataKyosui"}
   ]
 
@@ -22,7 +25,7 @@ export default function RootLayout({
 
   return (
     <html lang="ja" className='bg-slate-50'>
-      <body>
+      <body className={Myfont.className}>
         <SessionProvider>
           <Navbar />
           {children}
