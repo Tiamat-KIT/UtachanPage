@@ -1,4 +1,6 @@
 import Link from "next/link"
+/* import {Inter} from "next/font/google"
+const inter = Inter({subsets: ["latin"]}) */
 
 export type FooterItemProps = {
     text: string,
@@ -14,9 +16,9 @@ export default function Footer({
 }){
     return (
         <>
-            <footer className="footer bg-slate-100 p-5">
+            <footer className={`footer bg-slate-100 p-5`}>
                 <div>
-                    <span className="footer-title">SNS</span>
+                    <span className="footer-title">ふだんのわたし</span>
                     {HobbySNSList.map((Hobby,i) => {
                         return(
                             <Link href={Hobby.url} key={HobbySNSList.length}>
@@ -26,7 +28,7 @@ export default function Footer({
                     })}
                 </div>
                 <div>
-                    <span className="footer-title">Technology</span>
+                    <span className="footer-title">がんばってるわたし</span>
                     {DevelopSNSList.map((Develop,i) => {
                         return(
                             <Link href={Develop.url} key={DevelopSNSList.length}>
